@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
       chrome.runtime.sendMessage({ action: "scrapeDates", tabId: tabs[0].id }, function(response) {
         if (response) {
           console.log('Scraped Data:', url, response);
+          document.getElementById('url').innerHTML = `URL: <br> <a href=${url} target="_blank">${url}</a>` || 'URL: Not found';
           document.getElementById('publishingDate').textContent = `Publishing Date: ${response.publishingDate || 'Not found'}`;
           document.getElementById('updateDate').textContent = `Last Updated: ${response.updateDate || 'Not found'}`;
         } else {
