@@ -24,6 +24,13 @@ body {
     color: #666;
   }
   
+  #description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #666;
+  }
+  
   button {
     padding: 10px 20px;
     font-size: 16px;

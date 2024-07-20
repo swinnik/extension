@@ -16,9 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   
     let counter = 0;
-    document.getElementById('myButton').addEventListener('click', function() {
+    document.getElementById('incrementButton').addEventListener('click', function() {
       counter++;
       document.getElementById('title').textContent = "Button Clicked!";
-      document.getElementById('description').textContent = `You've clicked the button ${counter} times.`;
+      document.getElementById('description').innerHTML = `You've clicked the button <br> ${counter} times.`;
     });
+
+    document.getElementById('resetButton').addEventListener('click', function() {
+        counter = 0;
+        document.getElementById('title').textContent = "Counter Reset!";
+        document.getElementById('description').innerHTML = `Counter has been reset to <br> ${counter}.`;
+      });
+    
   });
