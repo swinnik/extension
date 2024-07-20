@@ -2,13 +2,16 @@
 <html>
 <head>
   <title>Hello World Extension</title>
-  <script src="popup.js"></script>
+  <script src="popup.js" defer></script>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <h1 id="title">Hello, World!</h1>
-  <p id="description">This is a simple Chrome extension popup.</p>
-  <button id="increment">Click Me</button>
+  <button id="incrementButton">Click Me</button>
   <button id="resetButton">Reset</button>
+  <p id="description">This is a simple Chrome extension popup.</p>
+  <p id="url"> Loading... </p>
+  <p id="publishingDate">Publishing Date: Loading...</p>
+  <p id="updateDate">Last Updated: Loading...</p>
 </body>
 </html>
