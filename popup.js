@@ -1,22 +1,24 @@
-// popup.js
-
-// Initialize counter variable
-let counter = 0;
-
-
 document.addEventListener('DOMContentLoaded', function() {
-    const incrementButton = document.getElementById('increment');
-    const resetButton = document.getElementById('resetButton');
-    // Set up the click event listener
-    incrementButton.addEventListener('click', function() {
-    counter++;
-        document.getElementById('title').textContent = "Button Clicked!";
-        document.getElementById('description').textContent = `You've clicked the button ${counter} times.`;
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        const tab = tabs[0];
+        const url = tab.url;
+      chrome.runtime.sendMessage({ action: "scrapeDates", tabId: tabs[0].id }, function(response) {
+        if (response) {
+          console.log('Scraped Data:', url, response);
+          document.getElementById('publishingDate').textContent = `Publishing Date: ${response.publishingDate || 'Not found'}`;
+          document.getElementById('updateDate').textContent = `Last Updated: ${response.updateDate || 'Not found'}`;
+        } else {
+          console.log('No response received or no dates found.');
+          document.getElementById('publishingDate').textContent = 'Publishing Date: Not found';
+          document.getElementById('updateDate').textContent = 'Last Updated: Not found';
+        }
+      });
     });
-
-    resetButton.addEventListener('click', function() {
-        counter = 0;
-        document.getElementById('title').textContent = "Counter Reset!";
-        document.getElementById('description').textContent = `Counter has been reset to ${counter}.`;
+  
+    let counter = 0;
+    document.getElementById('myButton').addEventListener('click', function() {
+      counter++;
+      document.getElementById('title').textContent = "Button Clicked!";
+      document.getElementById('description').textContent = `You've clicked the button ${counter} times.`;
     });
-});
+  });
