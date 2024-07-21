@@ -15,18 +15,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     });
-  
-    let counter = 0;
-    document.getElementById('incrementButton').addEventListener('click', function() {
-      counter++;
-      document.getElementById('title').textContent = "Button Clicked!";
-      document.getElementById('description').innerHTML = `You've clicked the button <br> ${counter} times.`;
-    });
+      
 
-    document.getElementById('resetButton').addEventListener('click', function() {
-        counter = 0;
-        document.getElementById('title').textContent = "Counter Reset!";
-        document.getElementById('description').innerHTML = `Counter has been reset to <br> ${counter}.`;
+      document.getElementById('copyButton').addEventListener('click', function() {
+        const publishingDate = document.getElementById('publishingDate').textContent;
+        const updateDate = document.getElementById('updateDate').textContent;
+        const textToCopy = `${publishingDate}\n${updateDate}`;
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+
+        }, (err) => {
+          console.error('Could not copy text: ', err);
+        });
       });
+
     
   });
+
